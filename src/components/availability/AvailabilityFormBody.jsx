@@ -11,11 +11,11 @@ import {
 import Dialog from "../ui/Dialog";
 import Button from "../ui/Button";
 import { Loader2 } from "lucide-react";
-import Switch from "../ui/switch";
 import { useCreateAvailability } from "../../features/availability/useCreateAvailability";
 import { useEditAvailability } from "../../features/availability/useEditAvailability";
 import { Controller, useForm } from "react-hook-form";
 import { useUsers } from "../../features/users/useUsers";
+import SwitchTemp from "../ui/SwitchTemp";
 
 const DAYS = [
   "Sunday",
@@ -229,7 +229,7 @@ export default function AvailabilityFormBody({ record = {}, onCloseModal }) {
             name="isOpen"
             control={control}
             render={({ field }) => (
-              <Switch
+              <SwitchTemp
                 disabled={isWorking}
                 checked={field.value}
                 onCheckedChange={field.onChange}

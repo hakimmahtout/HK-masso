@@ -13,7 +13,7 @@ import {
 import { useCreateUser } from "../../features/users/useCreateUser";
 import { useEditUser } from "../../features/users/useEditUser";
 import { Loader2 } from "lucide-react";
-import Switch from "../ui/switch";
+import SwitchTemp from "../ui/SwitchTemp";
 
 const ROLES = ["user", "admin", "worker", "receptionist"];
 
@@ -161,7 +161,7 @@ export default function UserFormBody({ userToEdit = {}, onCloseModal }) {
               name="active"
               control={control}
               render={({ field }) => (
-                <Switch
+                <SwitchTemp
                   disabled={isWorking}
                   checked={field.value}
                   onCheckedChange={field.onChange}
