@@ -8,9 +8,9 @@ import Button from "../ui/Button";
 import Input from "../ui/Input";
 import Label from "../ui/Label";
 import Textarea from "../ui/Textarea";
-import Switch from "../ui/switch";
 
 import { Plus, Upload, X, Loader2 } from "lucide-react";
+import Switch from "../ui/SwitchTemp";
 
 const DURATION_OPTIONS = [15, 30, 45, 60, 75, 90, 120, 150, 180];
 
