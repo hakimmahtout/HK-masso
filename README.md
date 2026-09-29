@@ -1,61 +1,157 @@
-# HK Masso - Admin Dashboard (Frontend)
+# HK Masso — Customer Website
 
-A role-based administrative web application for managing services, user permissions, worker availabilities, and appointment bookings for HK Masso.
+A modern customer-facing web application for **HK Masso**, allowing customers to explore massage services, discover available workers, and book appointments online.
 
-🌐 **Live Demo:** [hk-masso.vercel.app/overview](https://hk-masso.vercel.app/overview)
+🌐 **Live Demo:** https://YOUR-CUSTOMER-SITE.vercel.app
 
 ---
 
-## 🚀 Features & Access Control
+## ✨ Features
 
-The dashboard implements fine-grained **Role-Based Access Control (RBAC)** across four user levels: `Super Admin`, `Admin`, `Worker`, and `Receptionist`.
+### 💆 Massage Services
 
-### 🔐 Role Permissions Matrix
+* Browse available massage services
+* View service details, duration, and pricing
+* Explore available treatments
 
-* **Super Admin:**
-  * User management: Create new staff accounts, modify user roles, and delete users.
-  * System guardrails: Enforces a single Super Admin account constraint across the system.
-  * Full administrative access over services, availabilities, and bookings.
-* **Admin:**
-  * Full CRUD control over service listings (prices, durations, and details).
-  * Create, edit, and delete worker schedules and availabilities.
-  * Manage and update booking statuses or delete bookings.
-* **Worker & Receptionist:**
-  * View-only access to operational stats, service lists, user profiles, worker availabilities, and customer bookings.
-* **All Users:**
-  * Profile self-management (account deletion option).
-  * Dashboard access protected via secure login (JWT & session cookies provided by the API server).
+### 📅 Online Booking
 
-### 🎨 User Interface & Experience
-* **Interactive Data Visualization:** Real-time business performance analytics powered by Recharts.
-* **Theme Preference:** Full Light and Dark mode toggle.
-* **Error Resilience:** Error boundaries via `react-error-boundary` and toast feedback using `sonner`.
+* Select a massage service
+* Choose an available worker
+* Select an available date and time
+* Create and manage appointments
+* View booking information and status
+
+### 👤 Customer Accounts
+
+* Secure authentication
+* Customer profile management
+* View personal booking history
+* Manage account information
+
+### ⭐ Reviews
+
+* View customer reviews
+* Submit reviews after completed appointments
+* Display service and worker ratings
+
+### 🎨 User Experience
+
+* Responsive design for desktop, tablet, and mobile
+* Light and dark mode
+* Interactive UI
+* Loading and error states
+* Toast notifications for user feedback
+
+---
+
+## 🏗️ Architecture
+
+The HK Masso platform is divided into separate repositories.
+
+```mermaid
+flowchart LR
+    C[Customer Website<br/>React / Next.js]
+    A[Admin Dashboard<br/>React + Vite]
+    B[Express.js REST API]
+    DB[(MongoDB)]
+    CL[Cloudinary]
+
+    C -->|REST API| B
+    A -->|REST API| B
+
+    B --> DB
+    B --> CL
+```
+
+The **Customer Website** and **Admin Dashboard** are independent frontend applications that communicate with the same backend API.
 
 ---
 
 ## 🛠️ Tech Stack
 
-* **Build Tool & Core:** [React 18](https://react.dev/), [Vite](https://vitejs.dev/)
-* **Routing & SEO:** [React Router](https://reactrouter.com/), `react-helmet-async`
-* **UI Components & Styling:** [Tailwind CSS](https://tailwindcss.com/), [Radix UI](https://www.radix-ui.com/), `tailwindcss-animate`, [Lucide React](https://lucide.dev/)
-* **State Management & Data Fetching:** [TanStack Query (React Query)](https://tanstack.com/query/latest), [Axios](https://axios-http.com/)
-* **Forms & Validation:** `react-hook-form`
-* **Data Visualization:** [Recharts](https://recharts.org/)
-* **Feedback & Error Handling:** `sonner` (Toasts), `react-error-boundary`
-
-> **Note:** This repository houses the **Admin Frontend** interface built with Vite. Authentication, business logic, and database operations are powered by a separate Node.js / Express / MongoDB REST API.
+* **Frontend:** React / Next.js
+* **Styling:** Tailwind CSS
+* **Data Fetching:** TanStack Query
+* **HTTP Client:** Axios
+* **Forms:** React Hook Form
+* **UI Components:** Radix UI
+* **Icons:** Lucide React
+* **Backend:** Node.js / Express.js
+* **Database:** MongoDB
+* **Image Storage:** Cloudinary
 
 ---
 
-## 📂 Getting Started
+## 📸 Screenshots
+
+### Home Page
+
+![Home Page](./docs/screenshots/home.png)
+
+### Services
+
+![Services](./docs/screenshots/services.png)
+
+### Booking
+
+![Booking](./docs/screenshots/booking.png)
+
+---
+
+## 🎥 Feature Demos
+
+### Booking a Massage
+
+![Booking Demo](./docs/demos/booking.gif)
+
+### Exploring Services
+
+![Services Demo](./docs/demos/services.gif)
+
+---
+
+## 🔗 Related Repositories
+
+| Repository           | Description                                                      |
+| -------------------- | ---------------------------------------------------------------- |
+| **Customer Website** | Customer-facing application                                      |
+| **Admin Dashboard**  | Administrative management interface                              |
+| **Backend API**      | Express.js REST API, authentication, business logic and database |
+
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
 
-Make sure you have [Node.js](https://nodejs.org/) (v18 or higher) installed.
+Make sure you have **Node.js 18+** installed.
 
-### Local Setup
+### Installation
 
-1. **Clone the repository:**
-   ```bash
-   git clone [https://github.com/hakimmahtout/hk-masso-admin-frontend.git](https://github.com/your-username/hk-masso-admin-frontend.git)
-   cd hk-masso-admin-frontend
+Clone the repository:
+
+```bash
+git clone https://github.com/hakimmahtout/YOUR-REPOSITORY.git
+cd YOUR-REPOSITORY
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+The application will be available at the local development URL shown in your terminal.
+
+---
+
+## 📄 License
+
+This project is developed for HK Masso.
