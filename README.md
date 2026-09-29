@@ -1,16 +1,61 @@
-# React + Vite
+# HK Masso - Admin Dashboard (Frontend)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A role-based administrative web application for managing services, user permissions, worker availabilities, and appointment bookings for HK Masso.
 
-Currently, two official plugins are available:
+🌐 **Live Demo:** [hk-masso.vercel.app/overview](https://hk-masso.vercel.app/overview)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🚀 Features & Access Control
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The dashboard implements fine-grained **Role-Based Access Control (RBAC)** across four user levels: `Super Admin`, `Admin`, `Worker`, and `Receptionist`.
 
-## Expanding the ESLint configuration
+### 🔐 Role Permissions Matrix
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* **Super Admin:**
+  * User management: Create new staff accounts, modify user roles, and delete users.
+  * System guardrails: Enforces a single Super Admin account constraint across the system.
+  * Full administrative access over services, availabilities, and bookings.
+* **Admin:**
+  * Full CRUD control over service listings (prices, durations, and details).
+  * Create, edit, and delete worker schedules and availabilities.
+  * Manage and update booking statuses or delete bookings.
+* **Worker & Receptionist:**
+  * View-only access to operational stats, service lists, user profiles, worker availabilities, and customer bookings.
+* **All Users:**
+  * Profile self-management (account deletion option).
+  * Dashboard access protected via secure login (JWT & session cookies provided by the API server).
+
+### 🎨 User Interface & Experience
+* **Interactive Data Visualization:** Real-time business performance analytics powered by Recharts.
+* **Theme Preference:** Full Light and Dark mode toggle.
+* **Error Resilience:** Error boundaries via `react-error-boundary` and toast feedback using `sonner`.
+
+---
+
+## 🛠️ Tech Stack
+
+* **Build Tool & Core:** [React 18](https://react.dev/), [Vite](https://vitejs.dev/)
+* **Routing & SEO:** [React Router](https://reactrouter.com/), `react-helmet-async`
+* **UI Components & Styling:** [Tailwind CSS](https://tailwindcss.com/), [Radix UI](https://www.radix-ui.com/), `tailwindcss-animate`, [Lucide React](https://lucide.dev/)
+* **State Management & Data Fetching:** [TanStack Query (React Query)](https://tanstack.com/query/latest), [Axios](https://axios-http.com/)
+* **Forms & Validation:** `react-hook-form`
+* **Data Visualization:** [Recharts](https://recharts.org/)
+* **Feedback & Error Handling:** `sonner` (Toasts), `react-error-boundary`
+
+> **Note:** This repository houses the **Admin Frontend** interface built with Vite. Authentication, business logic, and database operations are powered by a separate Node.js / Express / MongoDB REST API.
+
+---
+
+## 📂 Getting Started
+
+### Prerequisites
+
+Make sure you have [Node.js](https://nodejs.org/) (v18 or higher) installed.
+
+### Local Setup
+
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/your-username/hk-masso-admin-frontend.git](https://github.com/your-username/hk-masso-admin-frontend.git)
+   cd hk-masso-admin-frontend
