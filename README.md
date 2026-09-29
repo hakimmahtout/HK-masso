@@ -57,35 +57,3 @@ Make sure you have [Node.js](https://nodejs.org/) (v18 or higher) installed.
 
 1. **Clone the repository:**
    ```bash
-
-   ---
-
-## 🏗️ System Architecture
-
-```mermaid
-flowchart TD
-    subgraph Clients["Frontend Applications"]
-        A["HK Masso Client App<br>(Next.js)"]
-        B["HK Masso Admin Dashboard<br>(React + Vite)"]
-    end
-
-    subgraph Auth["Security & Auth"]
-        C["Google OAuth<br>(Auth.js)"]
-        D["JWT & Session Cookies<br>(Custom API Auth)"]
-    end
-
-    subgraph Backend["Backend API Services"]
-        E["Express.js REST API<br>(Node.js)"]
-    end
-
-    subgraph Database["Database"]
-        F[("MongoDB Atlas<br>(Mongoose)")]
-    end
-
-    A -->|User Auth| C
-    B -->|Admin Login| D
-    A -->|HTTP / Axios| E
-    B -->|HTTP / Axios| E
-    E -->|Database Operations| F
-   git clone [https://github.com/your-username/hk-masso-admin-frontend.git](https://github.com/your-username/hk-masso-admin-frontend.git)
-   cd hk-masso-admin-frontend
