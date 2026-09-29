@@ -1,157 +1,161 @@
-# HK Masso — Customer Website
+# HK Masso - Admin Dashboard (Frontend)
 
-A modern customer-facing web application for **HK Masso**, allowing customers to explore massage services, discover available workers, and book appointments online.
+A role-based administrative web application for managing services, user permissions, worker availabilities, and appointment bookings for HK Masso.
 
-🌐 **Live Demo:** https://YOUR-CUSTOMER-SITE.vercel.app
-
----
-
-## ✨ Features
-
-### 💆 Massage Services
-
-* Browse available massage services
-* View service details, duration, and pricing
-* Explore available treatments
-
-### 📅 Online Booking
-
-* Select a massage service
-* Choose an available worker
-* Select an available date and time
-* Create and manage appointments
-* View booking information and status
-
-### 👤 Customer Accounts
-
-* Secure authentication
-* Customer profile management
-* View personal booking history
-* Manage account information
-
-### ⭐ Reviews
-
-* View customer reviews
-* Submit reviews after completed appointments
-* Display service and worker ratings
-
-### 🎨 User Experience
-
-* Responsive design for desktop, tablet, and mobile
-* Light and dark mode
-* Interactive UI
-* Loading and error states
-* Toast notifications for user feedback
+🌐 **Live Demo:** [hk-masso.vercel.app/overview](https://hk-masso.vercel.app/overview)
 
 ---
 
 ## 🏗️ Architecture
 
-The HK Masso platform is divided into separate repositories.
+The HK Masso platform is built as separate applications that communicate through a centralized REST API.
+
+* **Customer Website** — Customer-facing application for browsing services and making appointments.
+* **Admin Dashboard** — This repository. Provides role-based management tools for staff.
+* **Backend API** — Node.js / Express.js REST API responsible for authentication, business logic, and database operations.
 
 ```mermaid
-flowchart LR
-    C[Customer Website<br/>React / Next.js]
-    A[Admin Dashboard<br/>React + Vite]
-    B[Express.js REST API]
-    DB[(MongoDB)]
-    CL[Cloudinary]
+flowchart TB
+    C[Customer Website<br/>Separate Repository]
+    A[Admin Dashboard<br/>React + Vite<br/>This Repository]
 
-    C -->|REST API| B
+    C -->|REST API| B[Node.js / Express.js API]
     A -->|REST API| B
 
-    B --> DB
-    B --> CL
+    B --> AUTH[JWT Authentication<br/>Session Cookies]
+    B --> DB[(MongoDB)]
+    B --> CLOUD[Cloudinary]
 ```
 
-The **Customer Website** and **Admin Dashboard** are independent frontend applications that communicate with the same backend API.
+The Admin Dashboard does not directly access the database. All data operations are handled through the backend API.
 
 ---
 
-## 🛠️ Tech Stack
+## 🚀 Features & Access Control
 
-* **Frontend:** React / Next.js
-* **Styling:** Tailwind CSS
-* **Data Fetching:** TanStack Query
-* **HTTP Client:** Axios
-* **Forms:** React Hook Form
-* **UI Components:** Radix UI
-* **Icons:** Lucide React
-* **Backend:** Node.js / Express.js
-* **Database:** MongoDB
-* **Image Storage:** Cloudinary
+The dashboard implements fine-grained **Role-Based Access Control (RBAC)** across four user levels: `Super Admin`, `Admin`, `Worker`, and `Receptionist`.
+
+### 🔐 Role Permissions Matrix
+
+* **Super Admin:**
+
+  * User management: Create new staff accounts, modify user roles, and delete users.
+  * System guardrails: Enforces a single Super Admin account constraint across the system.
+  * Full administrative access over services, availabilities, and bookings.
+
+* **Admin:**
+
+  * Full CRUD control over service listings (prices, durations, and details).
+  * Create, edit, and delete worker schedules and availabilities.
+  * Manage and update booking statuses or delete bookings.
+
+* **Worker & Receptionist:**
+
+  * View-only access to operational stats, service lists, user profiles, worker availabilities, and customer bookings.
+
+* **All Users:**
+
+  * Profile self-management (account deletion option).
+  * Dashboard access protected via secure login using JWT and session cookies provided by the API server.
+
+### 🎨 User Interface & Experience
+
+* **Interactive Data Visualization:** Business performance analytics powered by Recharts.
+* **Theme Preference:** Full Light and Dark mode toggle.
+* **Error Resilience:** Error boundaries via `react-error-boundary` and toast feedback using `sonner`.
+* **Responsive Interface:** Designed for use across desktop and tablet screen sizes.
 
 ---
 
-## 📸 Screenshots
+## 📸 Dashboard Preview
 
-### Home Page
+Screenshots and feature demonstrations can be added here to showcase the dashboard's main functionality.
 
-![Home Page](./docs/screenshots/home.png)
+### Overview
 
-### Services
+![Dashboard Overview](./docs/screenshots/dashboard.png)
 
-![Services](./docs/screenshots/services.png)
+### Booking Management
 
-### Booking
+![Booking Management](./docs/screenshots/bookings.png)
 
-![Booking](./docs/screenshots/booking.png)
+### User Management
+
+![User Management](./docs/screenshots/users.png)
 
 ---
 
 ## 🎥 Feature Demos
 
-### Booking a Massage
+### Role-Based Access Control
 
-![Booking Demo](./docs/demos/booking.gif)
+![RBAC Demo](./docs/demos/rbac.gif)
 
-### Exploring Services
+### Booking Management
 
-![Services Demo](./docs/demos/services.gif)
+![Booking Demo](./docs/demos/bookings.gif)
 
----
+### Dark Mode
 
-## 🔗 Related Repositories
-
-| Repository           | Description                                                      |
-| -------------------- | ---------------------------------------------------------------- |
-| **Customer Website** | Customer-facing application                                      |
-| **Admin Dashboard**  | Administrative management interface                              |
-| **Backend API**      | Express.js REST API, authentication, business logic and database |
+![Dark Mode](./docs/demos/dark-mode.gif)
 
 ---
 
-## 🚀 Getting Started
+## 🛠️ Tech Stack
+
+* **Build Tool & Core:** [React 18](https://react.dev/), [Vite](https://vitejs.dev/)
+* **Routing & SEO:** [React Router](https://reactrouter.com/), `react-helmet-async`
+* **UI Components & Styling:** [Tailwind CSS](https://tailwindcss.com/), [Radix UI](https://www.radix-ui.com/), `tailwindcss-animate`, [Lucide React](https://lucide.dev/)
+* **State Management & Data Fetching:** [TanStack Query (React Query)](https://tanstack.com/query/latest), [Axios](https://axios-http.com/)
+* **Forms & Validation:** `react-hook-form`
+* **Data Visualization:** [Recharts](https://recharts.org/)
+* **Feedback & Error Handling:** `sonner` (Toasts), `react-error-boundary`
+
+> **Note:** This repository houses the **Admin Frontend** interface built with Vite. Authentication, business logic, and database operations are powered by a separate Node.js / Express / MongoDB REST API.
+
+---
+
+## 📂 Getting Started
 
 ### Prerequisites
 
-Make sure you have **Node.js 18+** installed.
+Make sure you have [Node.js](https://nodejs.org/) (v18 or higher) installed.
 
-### Installation
+### Local Setup
 
-Clone the repository:
+1. **Clone the repository:**
 
 ```bash
-git clone https://github.com/hakimmahtout/YOUR-REPOSITORY.git
-cd YOUR-REPOSITORY
+git clone https://github.com/hakimmahtout/hk-masso-admin-frontend.git
+cd hk-masso-admin-frontend
 ```
 
-Install dependencies:
+2. **Install dependencies:**
 
 ```bash
 npm install
 ```
 
-Start the development server:
+3. **Start the development server:**
 
 ```bash
 npm run dev
 ```
 
-The application will be available at the local development URL shown in your terminal.
+4. Open the local development URL provided by Vite in your browser.
+
+---
+
+## 🔗 Related Repositories
+
+| Project              | Description                                              |
+| -------------------- | -------------------------------------------------------- |
+| **Customer Website** | Customer-facing HK Masso application                     |
+| **Admin Dashboard**  | Role-based administrative dashboard — this repository    |
+| **Backend API**      | Node.js / Express.js REST API powering both applications |
 
 ---
 
 ## 📄 License
 
-This project is developed for HK Masso.
+This project is part of the HK Masso platform.
